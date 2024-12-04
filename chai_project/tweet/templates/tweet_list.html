@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Chai aur Django
+{% endblock %}
+
+{% block content %}
+<h1> Welcome to Django Project </h1>
+
+<a class = "btn btn-primary mb-4" href = {% url 'create_tweet' %}> Create Tweet </a>
+<div class = "container row gap-3"> 
+    {% for tweet in tweets %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{tweet.photo.urls}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{tweet.user.username}}</h5>
+          <p class="card-text">{{tweet.text}}</p>
+          <a href="{% url 'edit_tweet' tweet.id %}" class="btn btn-primary"> Edit </a>
+          <a href="{% url 'delete_tweet' tweet.id %}" class="btn btn-danger"> Delete </a>
+        </div>
+      </div>
+    {% endfor%}
+</div>
+{% endblock %}  
